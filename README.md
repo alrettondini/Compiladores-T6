@@ -1,14 +1,14 @@
 # Compiladores-T5
-Trabalho 5 da Disciplina de Compiladores
-Implementação de um gerador de código para a linguagem LA (Linguagem Algorítmica) desenvolvida pelo prof. Jander
+Trabalho 6 da Disciplina de Compiladores
+Implementação de um compilador para a linguagem FactorioPlanner, responsável pelo cálculo e planejamento de cadeias de produção de itens para o jogo Factorio.
 
 Integrantes:
 - André Luis Zitelli Rettondini, 802058;
 - William Matsuda, 812305;
 - Giovanni Rossi, 801301;
 
-Código utilizado para testar com o corretor automático:
+Código utilizado para testar manualmente cada teste:
 
 ```
-java -jar .\compiladores-corretor-automatico-1.0-SNAPSHOT-jar-with-dependencies.jar "java -jar D:\Faculdade\Compiladores\Compiladores-T5\target\JanderLexico-1.0-SNAPSHOT-jar-with-dependencies.jar" gcc "c:\temp" "D:\Faculdade\Compiladores\casos-de-teste\casos-de-teste" "802058, 812305, 801301" t5
+java -jar .\target\FactorioPlanner-1.0-SNAPSHOT-jar-with-dependencies.jar <CAMINHO_PARA_ARQUIVO_DE_TESTE>
 ```
