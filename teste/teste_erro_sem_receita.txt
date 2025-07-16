@@ -1,5 +1,0 @@
-// 'placaAvancada' não é um recurso base e não tem receita
-entidade montadorSuperComputador [ consome: 1x placaAvancada produz: superComputador ]
-
-Produção:
-    criar superComputador
