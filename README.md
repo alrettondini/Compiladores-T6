@@ -1,4 +1,4 @@
-# Compiladores-T5
+# Compiladores-T6
 Trabalho 6 da Disciplina de Compiladores
 Implementação de um compilador para a linguagem FactorioPlanner, responsável pelo cálculo e planejamento de cadeias de produção de itens para o jogo Factorio.
 
