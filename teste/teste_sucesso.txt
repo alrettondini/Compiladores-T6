@@ -1,0 +1,24 @@
+// Define as receitas básicas de mineração e fundição
+entidade mineradoraFerro [
+    consome: minerioFerro
+    produz: ferroCru
+]
+entidade fornalha [
+    consome: ferroCru
+    produz: placaDeFerro
+]
+
+// Define a receita para engrenagens
+entidade montadorEngrenagem [
+    consome: 2x placaDeFerro
+    produz: engrenagem
+]
+
+// Define a receita para a automação (ciência vermelha)
+entidade montadorCiencia [
+    consome: 1x engrenagem, 1x placaDeFerro
+    produz: pacoteDeCienciaVermelha
+]
+
+Produção:
+    criar pacoteDeCienciaVermelha

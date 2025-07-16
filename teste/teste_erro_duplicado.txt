@@ -1,0 +1,13 @@
+entidade fornalhaDePedra [
+    consome: minerioFerro
+    produz: placaDeFerro
+]
+
+// Define a mesma receita novamente, o que é um erro.
+entidade fornalhaDeAco [
+    consome: minerioFerro
+    produz: placaDeFerro
+]
+
+Produção:
+    criar placaDeFerro

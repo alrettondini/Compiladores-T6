@@ -1,0 +1,25 @@
+// --- RECURSOS BASE ---
+entidade mineradoraFerro [
+    consome: minerioFerro
+    produz: ferroCru
+]
+entidade fornalha [
+    consome: ferroCru
+    produz: placaDeFerro
+]
+
+// --- COMPONENTES INTERMEDIÁRIOS ---
+entidade montadorEngrenagem [
+    consome: 2x placaDeFerro
+    produz: engrenagem
+]
+
+// --- PRODUTO FINAL ---
+// Uma esteira precisa de 1 placa de ferro e 1 engrenagem.
+entidade montadorEsteira [
+    consome: 1x placaDeFerro, 1x engrenagem
+    produz: esteira
+]
+
+Produção:
+    criar esteira

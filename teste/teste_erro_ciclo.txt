@@ -1,0 +1,12 @@
+entidade maquinaA [
+    consome: 1x itemB
+    produz: itemA
+]
+
+entidade maquinaB [
+    consome: 1x itemA
+    produz: itemB
+]
+
+Produção:
+    criar itemA

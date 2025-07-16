@@ -9,10 +9,15 @@ public class Main {
         try {
             CharStream cs = CharStreams.fromFileName(args[0]);
             FactorioPlannerLexer lexer = new FactorioPlannerLexer(cs);
+            
+            MyErrorListener errorListener = new MyErrorListener();
+
+            lexer.removeErrorListeners();
+            lexer.addErrorListener(errorListener);
+
             CommonTokenStream tokens = new CommonTokenStream(lexer);
             FactorioPlannerParser parser = new FactorioPlannerParser(tokens);
 
-            MyErrorListener errorListener = new MyErrorListener();
             parser.removeErrorListeners();
             parser.addErrorListener(errorListener);
 
@@ -34,7 +39,6 @@ public class Main {
             }
 
         } catch (Exception e) {
-            System.err.println("Ocorreu um erro: " + e.getMessage());
         }
     }
 }

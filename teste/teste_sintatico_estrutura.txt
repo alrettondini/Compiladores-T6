@@ -1,0 +1,5 @@
+// A seção "Produção" está antes da definição da entidade
+Produção:
+    criar engrenagem
+
+entidade montadorEngrenagem [ consome: 2x placaDeFerro produz: engrenagem ]

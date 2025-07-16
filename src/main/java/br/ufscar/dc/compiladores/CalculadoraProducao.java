@@ -6,20 +6,18 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+// Responsável por calcular todos os requisitos para produzir um item final
 public class CalculadoraProducao {
 
     private final Map<String, Receita> bancoDeReceitas;
+    // Armazena o resultado final: o nome do item/máquina e a quantidade total necessária
     private final Map<String, Integer> requisitosFinais = new LinkedHashMap<>();
 
     public CalculadoraProducao(Map<String, Receita> bancoDeReceitas) {
         this.bancoDeReceitas = bancoDeReceitas;
     }
 
-    /**
-     * Função auxiliar para obter um valor de ordenação para um item.
-     * A ordem é: Montador < Fornalha < Mineradora < Recurso Base.
-     * Retorna um número menor para categorias mais "complexas".
-     */
+    // Atribui um valor numérico ao tipo de entidade para fins de ordenação na saída
     private int getEntityTypeValue(String item) {
         if (item.startsWith("montador")) {
             return 1;
@@ -35,39 +33,33 @@ public class CalculadoraProducao {
 
     public void calcular(String itemFinal) {
         System.out.println("Calculando requisitos para: " + itemFinal + "\n");
-        resolverDependencias(itemFinal, 1);
+        resolverDependencias(itemFinal, 1); // Inicia a recursão
         
         System.out.println("--- REQUISITOS TOTAIS ---");
 
-        // --- INÍCIO DA NOVA LÓGICA DE ORDENAÇÃO ---
-        // Pega a máquina que produz o item final para exibi-la primeiro.
+        // Lógica para ordenar a lista de requisitos antes de imprimir
         String maquinaFinal = bancoDeReceitas.get(itemFinal).entidadeProdutora;
         int qtdeMaquinaFinal = requisitosFinais.remove(maquinaFinal);
-        System.out.println(qtdeMaquinaFinal + "x " + maquinaFinal);
+        System.out.println(qtdeMaquinaFinal + "x " + maquinaFinal); // Imprime a máquina principal primeiro
 
-        // Ordena o restante dos requisitos.
+        // Ordena o resto por tipo de entidade e depois alfabeticamente
         List<Map.Entry<String, Integer>> sortedRequisitos = requisitosFinais.entrySet()
             .stream()
             .sorted(Comparator
                     .comparingInt((Map.Entry<String, Integer> entry) -> getEntityTypeValue(entry.getKey()))
                     .thenComparing(Map.Entry::getKey))
             .collect(Collectors.toList());
-        // --- FIM DA NOVA LÓGICA DE ORDENAÇÃO ---
         
+        // Imprime a lista final e ordenada
         for (var entry : sortedRequisitos) {
             System.out.println(entry.getValue() + "x " + entry.getKey());
         }
     }
 
-    /**
-     * Função auxiliar para classificar um item por sua "complexidade".
-     * Itens de montadores são mais complexos que os de fornalhas, etc.
-     * Retorna um número menor para itens mais complexos.
-     */
+    // Função para ordenar os ingredientes por "complexidade" antes da recursão
     private int getComplexidade(String item) {
-        if (!bancoDeReceitas.containsKey(item)) {
-            return 4; // Recurso base (ex: minerio)
-        }
+        if (!bancoDeReceitas.containsKey(item)) return 4; // Recurso base
+        
         String entidade = bancoDeReceitas.get(item).entidadeProdutora;
         if (entidade.startsWith("montador")) {
             return 1; // Item de montagem
@@ -81,24 +73,25 @@ public class CalculadoraProducao {
         return 5; // Padrão
     }
 
-    /**
-     * Coração da lógica. Esta nova versão ordena os ingredientes de uma receita
-     * por complexidade antes de processá-los, garantindo uma ordem lógica na saída.
-     */
+    // Função recursiva que resolve as dependências
     private void resolverDependencias(String item, int quantidade) {
+        // Condição de parada: o item é um recurso base (não tem receita)
         if (!bancoDeReceitas.containsKey(item)) {
-            requisitosFinais.merge(item, quantidade, Integer::sum);
+            requisitosFinais.merge(item, quantidade, Integer::sum); // Adiciona o recurso à lista e retorna
             return;
         }
 
+        // Adiciona a máquina que produz o item atual à lista de requisitos
         Receita receita = bancoDeReceitas.get(item);
         requisitosFinais.merge(receita.entidadeProdutora, quantidade, Integer::sum);
 
+        // Ordena os ingredientes para processar os mais complexos primeiro
         List<Map.Entry<String, Integer>> ingredientesOrdenados = receita.ingredientes.entrySet()
             .stream()
             .sorted(Comparator.comparingInt(entry -> getComplexidade(entry.getKey())))
             .collect(Collectors.toList());
         
+        // Chama a recursão para cada ingrediente da receita
         for (var ingrediente : ingredientesOrdenados) {
             String nomeIngrediente = ingrediente.getKey();
             int qtdeNecessaria = ingrediente.getValue() * quantidade;

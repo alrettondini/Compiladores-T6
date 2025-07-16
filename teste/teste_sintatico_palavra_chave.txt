@@ -1,0 +1,8 @@
+// Faltando a palavra-chave "produz"
+entidade fornalhaTeste [
+    consome: 1x carvao
+    placaDeFerro
+]
+
+Produção:
+    criar placaDeFerro

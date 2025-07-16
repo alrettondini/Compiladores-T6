@@ -1,0 +1,7 @@
+entidade montadorComplexo [
+    consome: 1x itemA, 2x itemB, // Vírgula extra no final
+    produz: itemComplexo
+]
+
+Produção:
+    criar itemComplexo

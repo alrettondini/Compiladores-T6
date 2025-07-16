@@ -1,0 +1,7 @@
+entidade montadorTeste [
+    consome: 1x itemValido
+    produz: itemInvalido@
+]
+
+Produção:
+    criar itemInvalido

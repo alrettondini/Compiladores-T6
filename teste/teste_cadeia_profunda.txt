@@ -1,0 +1,26 @@
+// Nível 0: Mineração e Fundição
+entidade mineradoraFerro [ consome: minerioFerro produz: ferroCru ]
+entidade fornalhaFerro  [ consome: ferroCru produz: placaDeFerro ]
+entidade mineradoraCobre [ consome: minerioCobre produz: cobreCru ]
+entidade fornalhaCobre  [ consome: cobreCru produz: placaDeCobre ]
+entidade mineradoraCarvao [ consome: minerioCarvao produz: carvao ]
+entidade fornalhaAco     [ consome: 5x placaDeFerro, 1x carvao produz: aco ]
+
+// Nível 1: Componentes Básicos
+entidade montadorEngrenagem [ consome: 2x placaDeFerro produz: engrenagem ]
+entidade montadorTubo      [ consome: 1x placaDeFerro produz: tubo ]
+entidade montadorCabo      [ consome: 1x placaDeCobre produz: caboDeCobre ]
+
+// Nível 2: Componentes Avançados
+entidade montadorMotor [
+    consome: 1x aco, 1x engrenagem, 2x tubo
+    produz: motor
+]
+entidade montadorCircuito [
+    consome: 1x placaDeFerro, 3x caboDeCobre
+    produz: circuitoEletronico
+]
+
+
+Produção:
+    criar motor

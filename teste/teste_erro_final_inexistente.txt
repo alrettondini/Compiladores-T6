@@ -1,0 +1,9 @@
+entidade montadorSimples [
+    consome: 1x itemA
+    produz: itemB
+]
+
+// Nenhuma receita para fogueteEspacial é fornecida.
+
+Produção:
+    criar fogueteEspacial
