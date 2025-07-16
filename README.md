@@ -41,7 +41,7 @@ A estrutura é a seguinte:
   * **`NOME_DA_MAQUINA`**: Geralmente indica o tipo de máquina, como `montador`, `fornalha` ou `mineradora`.
   * **`consome`**: Palavra-chave que precede a lista de ingredientes necessários.
       * A lista de ingredientes pode ser um item único ou múltiplos itens separados por vírgula.
-      * A quantidade de cada item é especificada com um número seguido de `x`. [cite\_start]Se nenhuma quantidade for especificada, o padrão é 1. [cite: 1]
+      * A quantidade de cada item é especificada com um número seguido de `x`. Se nenhuma quantidade for especificada, o padrão é 1.
   * **`produz`**: Palavra-chave que precede o item que é o resultado da receita.
 
 **Exemplos:**
@@ -86,16 +86,16 @@ O compilador lê um arquivo `.txt`, processa-o em várias etapas e, se não houv
 
 2.  **Análise Semântica**: Se a sintaxe estiver correta, o `AnalisadorSemantico` entra em ação. Ele percorre a árvore sintática para realizar validações lógicas, garantindo que o programa faça sentido. Suas principais tarefas são:
 
-      * [cite\_start]Construir um "banco de receitas" com todas as entidades definidas. [cite: 1]
-      * [cite\_start]Verificar se não há receitas duplicadas para o mesmo item. [cite: 1]
-      * [cite\_start]Garantir que o item final especificado na seção `Produção` tenha uma receita correspondente. [cite: 1]
-      * [cite\_start]Detectar ciclos de produção (ex: A precisa de B, e B precisa de A), que tornariam a produção impossível. [cite: 1]
+      * Construir um "banco de receitas" com todas as entidades definidas.
+      * Verificar se não há receitas duplicadas para o mesmo item.
+      * Garantir que o item final especificado na seção `Produção` tenha uma receita correspondente.
+      * Detectar ciclos de produção (ex: A precisa de B, e B precisa de A), que tornariam a produção impossível.
 
 3.  **Cálculo da Produção**: Com as receitas validadas, a `CalculadoraProducao` assume o controle.
 
-      * [cite\_start]Ela recebe o item final como ponto de partida. [cite: 2]
-      * [cite\_start]Usando uma função recursiva, ela navega pela árvore de dependências, somando a quantidade de cada máquina e recurso base necessário. [cite: 2]
-      * Ao final, ela exibe uma lista consolidada e ordenada de todos os requisitos. [cite\_start]A ordenação agrupa os itens por tipo de entidade (montadoras, fornalhas, etc.) para maior clareza. [cite: 2]
+      * Ela recebe o item final como ponto de partida.
+      * Usando uma função recursiva, ela navega pela árvore de dependências, somando a quantidade de cada máquina e recurso base necessário.
+      * Ao final, ela exibe uma lista consolidada e ordenada de todos os requisitos. [cite\_start]A ordenação agrupa os itens por tipo de entidade (montadoras, fornalhas, etc.) para maior clareza.
 
 ## 4\. Como Utilizar
 
